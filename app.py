@@ -57,7 +57,7 @@ def password_generator():
                 new_pass += random.choice(special_characters)
             else:
                 if len(new_pass) > 0:
-                    random_index = random.randint(5, len(new_pass) + 3)
+                    random_index = random.randint(0, len(new_pass) + 3)
                     new_pass = new_pass[:random_index] + new_pass[random_index + 1:]
         return render_template('password_gen.html', password=new_pass)
 
