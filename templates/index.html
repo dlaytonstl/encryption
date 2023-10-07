@@ -3,11 +3,14 @@
 <head>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}?v=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Encryption/Decryption Web App</title>
+    <title>Combined Flask App</title>
 </head>
 <body>
-    <h1>Encryption/Decryption Web App</h1>
-    <form method="POST" action="/">
+    <h1>Combined Flask App</h1>
+
+    <!-- Cipher Form -->
+    <h2>Cipher</h2>
+    <form method="POST" action="/cipher">
         <label for="input_string">Enter a string:</label>
         <input type="text" name="input_string" id="input_string" required>
         <br>
@@ -19,12 +22,24 @@
         <br>
         <input type="submit" value="Submit">
     </form>
-    {% if result %}
-        <h2>Result:</h2>
-        <p>{{ result }}</p>
+    {% if cipher_result %}
+        <h3>Cipher Result:</h3>
+        <p>{{ cipher_result }}</p>
     {% endif %}
 
-    <div class="flame"></div>
-    
+    <!-- Password Generator Form -->
+    <h2>Password Generator</h2>
+    <form method="POST" action="/password_generator">
+        <label for="pass_len">Enter password length (Must be at least 10):</label>
+        <input type="number" name="pass_len" id="pass_len" min="10" required>
+        <br>
+        <input type="submit" value="Generate Password">
+    </form>
+    {% if password %}
+        <h3>Password Generator Result:</h3>
+        <p>{{ password }}</p>
+    {% endif %}
+
+    <a href="/">Back to Home</a>
 </body>
 </html>

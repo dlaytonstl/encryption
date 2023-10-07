@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
+import random
+import string
 
-# Create a Flask app
 app = Flask(__name__)
 
 def encrypt_string(input_string, key):
@@ -15,7 +16,7 @@ def encrypt_string(input_string, key):
 def decrypt_string(input_string, key):
     return encrypt_string(input_string, {v: k for k, v in key.items()})
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/cipher', methods=['GET', 'POST'])
 def cipher():
     key = {"a": "d", "b": "e", "c": "f", "d": "g", "e": "h", "f": "i", "g": "j", "h": "k", "i": "l", "j": "m",
            "k": "n", "l": "o", "m": "p", "n": "q", "o": "r", "p": "s", "q": "t", "r": "u", "s": "v", "t": "w",
@@ -36,8 +37,33 @@ def cipher():
 
     return render_template('index.html', result=None)
 
+@app.route('/password_generator', methods=['GET', 'POST'])
+def password_generator():
+    special_characters = "!@#$%^&*()_-+=<>?/[]{}|"
+
+    if request.method == 'POST':
+        pass_len = int(request.form['pass_len'])
+        if pass_len < 10:
+            return "Password length must be greater than 9"
+        new_pass = ''
+        for i in range(pass_len):
+            add_character = random.choice([True, False])
+            if add_character:
+                random_numbers = random.randint(1, 10)
+                new_pass += str(random_numbers)
+                new_pass += str(random.choice(string.ascii_letters))
+                new_pass += random.choice(special_characters)
+            else:
+                if len(new_pass) > 0:
+                    random_index = random.randint(0, len(new_pass) - 1)
+                    new_pass = new_pass[:random_index] + new_pass[random_index + 1:]
+        return render_template('index.html', password=new_pass)
+
+    return render_template('index.html', password=None)
+
 if __name__ == '__main__':
     app.run(debug=True)
+
 
 
 
