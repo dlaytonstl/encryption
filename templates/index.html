@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Encryption/Decryption Web App</title>
+</head>
+<body>
+    <h1>Encryption/Decryption Web App</h1>
+    <form method="POST" action="/">
+        <label for="input_string">Enter a string:</label>
+        <input type="text" name="input_string" id="input_string" required>
+        <br>
+        <label for="action">Choose action:</label>
+        <select name="action" id="action">
+            <option value="encrypt">Encrypt</option>
+            <option value="decrypt">Decrypt</option>
+        </select>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+    {% if result %}
+        <h2>Result:</h2>
+        <p>{{ result }}</p>
+    {% endif %}
+</body>
+</html>
