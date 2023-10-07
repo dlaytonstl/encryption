@@ -16,7 +16,11 @@ def encrypt_string(input_string, key):
 def decrypt_string(input_string, key):
     return encrypt_string(input_string, {v: k for k, v in key.items()})
 
-@app.route('/cipher', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
+def home():
+    return render_template('homepage.html')
+
+@app.route('/cipher', methods=['POST', 'GET'])
 def cipher():
     key = {"a": "d", "b": "e", "c": "f", "d": "g", "e": "h", "f": "i", "g": "j", "h": "k", "i": "l", "j": "m",
            "k": "n", "l": "o", "m": "p", "n": "q", "o": "r", "p": "s", "q": "t", "r": "u", "s": "v", "t": "w",
@@ -28,14 +32,12 @@ def cipher():
 
         if action == 'encrypt':
             result = encrypt_string(input_string.lower(), key)
+            return render_template('cipher.html', cipher_result=result)
         elif action == 'decrypt':
             result = decrypt_string(input_string.lower(), key)
-        else:
-            result = "Invalid action"
+            return render_template('cipher.html', cipher_result=result)
 
-        return render_template('index.html', result=result)
-
-    return render_template('index.html', result=None)
+    return render_template('cipher.html', cipher_result=None)
 
 @app.route('/password_generator', methods=['GET', 'POST'])
 def password_generator():
@@ -55,11 +57,11 @@ def password_generator():
                 new_pass += random.choice(special_characters)
             else:
                 if len(new_pass) > 0:
-                    random_index = random.randint(0, len(new_pass) - 1)
+                    random_index = random.randint(5, len(new_pass) + 3)
                     new_pass = new_pass[:random_index] + new_pass[random_index + 1:]
-        return render_template('index.html', password=new_pass)
+        return render_template('password_gen.html', password=new_pass)
 
-    return render_template('index.html', password=None)
+    return render_template('password_gen.html', password=None)
 
 if __name__ == '__main__':
     app.run(debug=True)

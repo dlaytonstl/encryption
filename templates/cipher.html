@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}?v=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cipher</title>
+</head>
+<body>
+    <h1>Encrypt or Decrypt Text!</h1>
+
+    <!-- Cipher Form -->
+    <form method="POST" action="/cipher">
+        <label for="input_string">Enter a string:</label>
+        <input type="text" name="input_string" id="input_string" required>
+        <br>
+        <label for="action">Choose action:</label>
+        <select name="action" id="action">
+            <option value="encrypt">Encrypt</option>
+            <option value="decrypt">Decrypt</option>
+        </select>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+    {% if cipher_result %}
+        <h3>Cipher Result:</h3>
+        <p>{{ cipher_result }}</p>
+    {% endif %}
+
+    <a href="/">Back to Home</a>
+</body>
+</html>

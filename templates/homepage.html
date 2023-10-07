@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Home Page</title>
+    <style>
+        /* CSS styles for the free-floating containers */
+        .option-container {
+            background: rgba(0, 0, 0, 0.7); /* Background color */
+            padding: 20px; /* Add padding for spacing */
+            margin: 20px; /* Add margin for spacing */
+            border-radius: 5px; /* Rounded corners for aesthetics */
+            text-align: center; /* Center-align text within the container */
+            cursor: pointer; /* Add a pointer cursor to indicate clickability */
+        }
+
+        /* CSS styles for links */
+        .button {
+            color: white; /* Text color */
+            text-decoration: none; /* Remove underlines from links */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome!</h1>
+        <p>Would you like to generate a password or encrypt some text?</p>
+    </div>
+
+    <!-- Separate free-floating containers for options, wrapped in anchor tags -->
+    <a href="/password_generator" class="option-container">
+        <h2>Generate a Password</h2>
+        <a href="/password_generator" class="button"></a>
+    </a>
+
+    <a href="/cipher" class="option-container">
+        <h2>Encrypt Text</h2>
+        <a href="/cipher" class="button"></a>
+    </a>
+</body>
+</html>
