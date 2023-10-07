@@ -84,3 +84,21 @@ input[type="submit"]:hover {
 }
 
 
+/* Example media query for screens with a maximum width of 768px (typical for mobile devices) */
+@media (max-width: 768px) {
+    /* Add mobile-specific styles here */
+}
+
+/* Default styles for all screen sizes */
+body {
+    font-size: 16px; /* Base font size */
+}
+
+/* Media query for screens with a maximum width of 768px (typical for mobile devices) */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px; /* Smaller font size for mobile */
+    }
+    
+    /* Adjust other styles for mobile here */
+}
