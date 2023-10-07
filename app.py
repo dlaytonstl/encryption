@@ -45,7 +45,7 @@ def password_generator():
 
     if request.method == 'POST':
         pass_len = int(request.form['pass_len'])
-        if pass_len < 10:
+        if pass_len < 10 or pass_len > 20:
             return "Password length must be greater than 9"
         new_pass = ''
         for i in range(pass_len):
