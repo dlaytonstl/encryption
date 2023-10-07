@@ -15,7 +15,7 @@ def encrypt_string(input_string, key):
 def decrypt_string(input_string, key):
     return encrypt_string(input_string, {v: k for k, v in key.items()})
 
-@app.route('/cipher', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def cipher():
     key = {"a": "d", "b": "e", "c": "f", "d": "g", "e": "h", "f": "i", "g": "j", "h": "k", "i": "l", "j": "m",
            "k": "n", "l": "o", "m": "p", "n": "q", "o": "r", "p": "s", "q": "t", "r": "u", "s": "v", "t": "w",
