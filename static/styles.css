@@ -1,5 +1,6 @@
 /* styles.css */
 
+/* Global styles */
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(-45deg, #007BFF, #0056b3, #007BFF, #0056b3);
@@ -12,6 +13,7 @@ body {
     min-height: 100vh;
     flex-direction: column;
     position: relative; /* Added for flames */
+    color: white; /* Set text color to white */
 }
 
 @keyframes gradient-animation {
@@ -26,6 +28,7 @@ body {
     }
 }
 
+/* Container for form and result */
 .container {
     max-width: 400px;
     padding: 20px;
@@ -33,14 +36,14 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     text-align: center;
-    color: #fff; /* Text color set to white */
 }
 
+/* Heading styles */
 h1 {
-    color: #fff; /* Text color set to white */
     margin-bottom: 20px;
 }
 
+/* Form styles */
 form {
     background-color: #f9f9f9;
     padding: 20px;
@@ -78,27 +81,6 @@ input[type="submit"]:hover {
 .result {
     margin-top: 20px;
     font-size: 18px;
-    color: #fff; /* Text color set to white */
 }
 
-/* Flame Animation */
-.flame {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100px;
-    background: linear-gradient(to bottom, #ff5733, #ffcd38);
-    animation: flame-animation 2s ease-in-out infinite alternate;
-    z-index: -1;
-}
 
-@keyframes flame-animation {
-    0% {
-        transform: scale(1, 1);
-    }
-    100% {
-        transform: scale(1, 1.05);
-    }
-}
