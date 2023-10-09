@@ -16,6 +16,10 @@ def encrypt_string(input_string, key):
 def decrypt_string(input_string, key):
     return encrypt_string(input_string, {v: k for k, v in key.items()})
 
+def number_rand():
+    rn = random.randrange(10)
+    return rn
+
 @app.route('/', methods=['GET'])
 def home():
     return render_template('homepage.html')
@@ -62,6 +66,59 @@ def password_generator():
         return render_template('password_gen.html', password=new_pass)
 
     return render_template('password_gen.html', password=None)
+
+
+
+# @app.route('/number_guess', methods=['GET', 'POST'])
+# def number_guess():
+#     if request.method == 'POST':
+#         target_number = number_rand()
+#         attempts = 0
+#         while attempts < 4:
+#             pg = int(request.form['guess'])
+#             if pg == target_number:
+#                 result = "Congratulations! You guessed the correct number."
+#                 break
+#             elif pg < target_number:
+#                 result = "Try a higher number."
+#                 attempts += 1
+#             else:
+#                 result = "Try a lower number."
+#                 attempts += 1
+#         else:
+#             result = f"Sorry, you're out of guesses. The correct number was {target_number}."
+
+#         return render_template('number_guess.html', result=result)
+
+#     return render_template('number_guess.html', result=None)
+
+@app.route('/number_guess', methods=['GET', 'POST'])
+def number_guess():
+    if request.method == 'POST':
+        target_number = number_rand()
+        attempts = 0
+        correct_guess = False  # Initialize a flag to track correct guesses
+
+        while attempts < 4:
+            pg = int(request.form['guess'])
+            if pg == target_number:
+                result = "Congratulations! You guessed the correct number."
+                correct_guess = True  # Set the flag to True for correct guesses
+                break
+            else:
+                result = "dumbass"
+                attempts += 1
+
+        if not correct_guess:  # Check the flag to determine if they ran out of guesses
+            result = f"Sorry, you're out of guesses. The correct number was {target_number}."
+
+        return render_template('number_guess.html', result=result)
+
+    return render_template('number_guess.html', result=None)
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
